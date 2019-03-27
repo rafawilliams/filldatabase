@@ -19,7 +19,7 @@ class MarcaSeed extends AbstractSeed
         $faker->addProvider(new \Faker\Provider\Fakecar($faker));
 
         $data = [];
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $data[] = [
                 'marca'      => $faker->vehicleBrand,
                 'modelo'     => $faker->vehicleModel

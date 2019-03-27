@@ -15,6 +15,20 @@ class EmpleadoSeed extends AbstractSeed
      */
     public function run()
     {
+        $faker = Faker\Factory::create('es_VE');
+        $faker->addProvider(new \Faker\Provider\Fakecar($faker));
+
+        $data = [];
+        for ($i = 0; $i < 100; $i++) {
+            $data[] = [
+                
+                'nombre'     => $faker->firstName($gender = null|'male'|'female'),
+                'apellido'     => $faker->lastName,
+                'no_empleado'   => $faker->unique()->numberBetween($min = 1000, $max = 9000)
+            ];
+        }
+
+        $this->insert('empleados', $data);
 
     }
 }

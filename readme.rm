@@ -1,0 +1,4 @@
+mongify process database.config translation.rb 
+ php vendor/bin/phinx seed:create UserSeeder
+
+ php vendor/bin/phinx seed:run -s UserSeeder -s PermissionSeeder -s LogSeeder

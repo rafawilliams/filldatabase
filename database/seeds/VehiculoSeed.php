@@ -15,6 +15,29 @@ class VehiculoSeed extends AbstractSeed
      */
     public function run()
     {
+        $faker = Faker\Factory::create('es_VE');
+        $faker->addProvider(new \Faker\Provider\Fakecar($faker));
+
+
+        $data = [];
+        for ($i = 0; $i < 50; $i++) {
+            $data[] = [
+                'placa'      => $faker->vehicleRegistration('[A-Z]{2}[0-9]{4}'),
+                'anio'     => $faker->biasedNumberBetween(1998,2017, 'sqrt'),
+                'color'    => $faker->colorName,
+                'precio_alquiler' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 30.30, $max = 100.20),
+                'estado'  => 'disponible',
+                'marca_modelo_id' => $faker->numberBetween($min = 1, $max = 30),
+                'tipo' => $faker->vehicleType,
+                'tipo_gasolina' => $faker->vehicleFuelType,
+                'transmision' => $faker->vehicleGearBoxType,
+                'cantidad_puerta' => $faker->vehicleDoorCount,
+                'cantidad_asiento' => $faker->vehicleSeatCount,
+                'especificaciones' => json_encode($faker->vehicleProperties)
+            ];
+        }
+
+        $this->insert('vehiculos', $data);
 
     }
 }
