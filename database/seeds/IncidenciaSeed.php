@@ -3,7 +3,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class EmpleadoSeed extends AbstractSeed
+class IncidenciaSeed extends AbstractSeed
 {
     /**
      * Run Method.
@@ -19,16 +19,13 @@ class EmpleadoSeed extends AbstractSeed
         $faker->addProvider(new \Faker\Provider\Fakecar($faker));
 
         $data = [];
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 1; $i < 20; $i++) {
             $data[] = [
-                
-                'nombre'     => $faker->firstName($gender = null|'male'|'female'),
-                'apellido'     => $faker->lastName,
-                'no_empleado'   => $faker->unique()->numberBetween($min = 1000, $max = 9000)
+                'observaciones'      => $faker->realText($faker->numberBetween(10,20)),
+                'cliente_vehiculo_id'     => $faker->numberBetween(1808, 1900)
             ];
         }
 
-        $this->insert('empleados', $data);
-
+        $this->insert('incidencias', $data);
     }
 }
